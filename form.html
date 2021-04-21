@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+ 
+<form ng-app="myApp" ng-controller="myCtrl" ng-submit="formSubmit()">
+ 
+<p>User Name: <input type="text" ng-model="name"></p>
+<p>Password: <input type="password" ng-model="password"></p>
+
+
+<button type="submit">Submit</button>
+
+
+<p>Validation message: {{ validationMessage }}</p>
+
+</form>
+</body>
+</html>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+
+$scope.formSubmit = function() {
+var specials = /[^A-Za-z0-9]/g;
+      if(!specials.test($scope.name) && !specials.test($scope.password)) {
+       $scope.validationMessage = "Success !! Values entered are right";
+      } else {
+        $scope.validationMessage = "Wrong !! Either UserName or Password has Special characters";
+      }   
+    };
+    
+});
+</script>
+
